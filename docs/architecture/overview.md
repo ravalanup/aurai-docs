@@ -4,48 +4,48 @@
 
 ```mermaid
 flowchart TB
-    subgraph Experience
+    subgraph EXP[Experience]
         W[Workspace<br/>Open WebUI]
         APPS[Business applications]
     end
-    subgraph Orchestration
+    subgraph ORC[Orchestration]
         LG[LangGraph agents]
         N8N[n8n workflows]
         CAS[Claude Agent SDK agents]
         CR[CrewAI crews]
     end
-    subgraph Platform services
+    subgraph PS[Platform services]
         GW[AI Gateway<br/>LiteLLM]
         KN[Knowledge service<br/>Qdrant]
         MCP[MCP connectors]
         POL[Policy engine<br/>Open Policy Agent]
         PII[PII masking<br/>Presidio]
     end
-    subgraph Trust
+    subgraph TR[Trust]
         OBS[Tracing and monitoring<br/>Langfuse + Phoenix via OpenTelemetry]
         EVAL[Eval gates<br/>Promptfoo]
         GOV[Risk tiers and approvals]
     end
-    subgraph Foundation
+    subgraph FND[Foundation]
         K8S[Kubernetes via Helm]
         TF[Terraform on AWS]
         ID[Identity<br/>Keycloak OIDC]
         SEC[Secrets management]
     end
-    Experience --> Orchestration
-    Experience --> GW
-    Orchestration --> GW
-    Orchestration --> KN
-    Orchestration --> MCP
+    EXP --> ORC
+    EXP --> GW
+    ORC --> GW
+    ORC --> KN
+    ORC --> MCP
     MCP --> POL
     GW --> PII
     GW --> MODELS[(Model providers)]
-    Orchestration -.-> OBS
+    ORC -.-> OBS
     GW -.-> OBS
     KN -.-> OBS
     EVAL --> GOV
     GOV --> POL
-    Platform services --> Foundation
+    PS --> FND
 ```
 
 ## Request flow: grounded answer
